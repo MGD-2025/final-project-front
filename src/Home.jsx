@@ -1,20 +1,37 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const Home = ({ data }) => {
+  const [recetas, setRecetas] = useState(data);
 
-const Home = ({data}) => {
+  const deleteReceta = async (id) => {
+    try {
+      await fetch(`http://localhost:3000/id/${id}`, {
+        method: "DELETE"
+      });
+
+      setRecetas(recetas.filter(item => item._id !== id));
+    } catch (error) {
+      console.error("Error al eliminar:", error);
+    }
+  };
+
   return (
     <>
-    <h2>Recetas</h2>
-    <ul>
-      {data.map(item =>(
-        <li key= {item._id}>
-          <Link to={`/${item._id}`}>{item.nombre}</Link>
-
-        </li>
-      ))}
-    </ul>
+      <h2>Recetas</h2>
+      <ul>
+        {recetas.map(item => (
+          <li key={item._id}>
+            <Link to={`/${item._id}`}>{item.Nombre}</Link>
+            <button onClick={() => deleteReceta(item._id)}> Eliminar receta </button>
+          </li>
+        ))}
+      </ul>
+      <nav>
+        <Link to='/create'>Añade una nueva receta</Link>
+      </nav>
     </>
-  )
+  );
 };
 
 export default Home;

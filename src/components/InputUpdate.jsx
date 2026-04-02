@@ -1,15 +1,29 @@
 import { useState } from "react";
 
-const InputCreate = ({ newReceta }) => {
+const InputUpadate = ({ actualizarReceta }) => {
 
   const [nombre, setNombre] = useState('');
   const [tipo, setTipo] = useState('');
   const [ingredientes, setIngredientes] = useState('');
   const [preparacion, setPreparacion] = useState('');
 
-  const urlApi = 'http://localhost:3000/create';
+  const urlApi = `http://localhost:3000/id/${id}`;
+    
+  useEffect(() => {
+    const fetchReceta = async () => {
+      const res = await fetch(`http://localhost:3000/recetas/${id}`);
+      const data = await res.json();
 
-  const createReceta = async () => {
+      setNombre(data.Nombre || '');
+      setTipo(data.Tipo || '');
+      setIngredientes(data.Ingredientes?.tipo?.join(',') || '');
+      setPreparacion(data.Receta?.preparacion?.join(',') || '');
+    };
+
+    fetchReceta();
+  }, [id]);
+
+  const updateReceta = async () => {
     try {
 
       const body = {
@@ -24,7 +38,7 @@ const InputCreate = ({ newReceta }) => {
       };
 
       await fetch(urlApi, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -73,9 +87,9 @@ const InputCreate = ({ newReceta }) => {
         onChange={(e) => setPreparacion(e.target.value)}
       />
 
-      <button onClick={createReceta}>Añadir Receta </button>
+      <button onClick={updateReceta}>Actualizar receta</button>
     </>
   );
 };
 
-export default InputCreate;
+export default InputUpadate;

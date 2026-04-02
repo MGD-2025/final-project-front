@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from './Home'
 import ItemDetailPage from "./ItemDetailPage";
 import InputCreate from "./components/InputCreate.jsx";
+import InputUpdate from "./components/InputUpdate.jsx";
 
 const App = () => {
   const [data, setData]= useState(null)
@@ -28,22 +29,20 @@ const App = () => {
       <nav>
         <Link to='/'> INICIO</Link>
       </nav>
-      <nav>
-        <Link to='/create'>Añade una nueva receta</Link>
-      </nav>
+
       {data===null 
       ? ( <div>Cargando ...</div>) 
       : 
       <Routes>
         <Route path='/' element={<Home data={data}/>} /> 
-        {data.map(item=>(
-          <Route key={item._id} path={`/${item._id}`} element={<ItemDetailPage item={item}/>} />
-        ))}
-
+        <Route path='/:id' element={<ItemDetailPage data={data} />} />
         <Route path='/create' element={<InputCreate newReceta={fetchData}/>} />
+        <Route path='/:id' element={<InputUpdate data={data} />} />
+
       </Routes>
       }
     </div>
+
   </Router>      
   )
 };
