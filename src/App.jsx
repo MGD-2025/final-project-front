@@ -37,7 +37,7 @@ const App = () => {
         <Route path='/' element={<Home data={data}/>} /> 
         <Route path='/:id' element={<ItemDetailPage data={data} />} />
         <Route path='/create' element={<InputCreate newReceta={fetchData}/>} />
-        <Route path='/:id' element={<InputUpdate data={data} />} />
+        <Route path='/editar/:id' element={<InputUpdate actualizarReceta={fetchData} />} />
 
       </Routes>
       }

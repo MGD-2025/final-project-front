@@ -1,26 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-const InputUpadate = ({ actualizarReceta }) => {
+const tipos = ['Entrantes', 'Principales', 'Ensaladas', 'Postres'];
+const alergia = ['Lácteos', 'Huevos', 'Gluten', 'Mariscos', 'Vegano']
+
+const InputUpdate = ({ actualizarReceta }) => {
+  const { id } = useParams();
 
   const [nombre, setNombre] = useState('');
-  const [tipo, setTipo] = useState('');
+  const [tipo, setTipo] = useState('[]');
   const [ingredientes, setIngredientes] = useState('');
   const [preparacion, setPreparacion] = useState('');
+  const [alergenos, setAlergenos] = useState ('[]')
 
-  const urlApi = `http://localhost:3000/id/${id}`;
+  const urlApi = `http://localhost:3000/editar/${id}`;
     
   useEffect(() => {
     const fetchReceta = async () => {
-      const res = await fetch(`http://localhost:3000/recetas/${id}`);
-      const data = await res.json();
+      const response = await fetch(`http://localhost:3000/id/${id}`);
+      const resData = await response.json();
 
-      setNombre(data.Nombre || '');
-      setTipo(data.Tipo || '');
-      setIngredientes(data.Ingredientes?.tipo?.join(',') || '');
-      setPreparacion(data.Receta?.preparacion?.join(',') || '');
+      setNombre(resData.Nombre || '');
+      setTipo(resData.Tipo || '');
+      setIngredientes(resData.Ingredientes?.tipo?.join(',') || '');
+      setPreparacion(resData.Receta?.preparacion?.join(',') || '');
+      setAlergenos (resData.Alérgenos?.tipo || ''); 
     };
 
-    fetchReceta();
+    fetchReceta()
+    
   }, [id]);
 
   const updateReceta = async () => {
@@ -45,13 +53,8 @@ const InputUpadate = ({ actualizarReceta }) => {
         body: JSON.stringify(body),
       });
 
-      setNombre('');
-      setTipo('');
-      setIngredientes('');
-      setPreparacion('');
-
-      newReceta();
-
+      actualizarReceta();
+      
     } catch (error) {
       console.error(error);
     }
@@ -66,12 +69,19 @@ const InputUpadate = ({ actualizarReceta }) => {
         onChange={(e) => setNombre(e.target.value)}
       />
 
-      <input
-        type='text'
-        placeholder='Tipo (Entrantes, Postres...)'
-        value={tipo}
-        onChange={(e) => setTipo(e.target.value)}
-      />
+      <select 
+        multiple 
+        value={tipo} 
+        onChange={(e) => {
+          const values = Array.from(e.target.selectedOptions, option => option.value);
+          setTipo(values);
+        }}
+      >
+        <option value="Entrantes">Entrantes</option>
+        <option value="Principales">Principales</option>
+        <option value= "Ensaladas">Ensaladas</option>
+        <option value="Postres">Postres</option>
+      </select>
 
       <input
         type='text'
@@ -87,9 +97,16 @@ const InputUpadate = ({ actualizarReceta }) => {
         onChange={(e) => setPreparacion(e.target.value)}
       />
 
+      <select value={alergia} onChange={(e) => setAlergenos(e.target.value)}>
+        <option value="">Selecciona Alérgenos</option>
+        {alergia.map(alergia => (
+        <option key={alergia} value={alergia}>{alergia}</option>
+        ))}
+      </select>
+
       <button onClick={updateReceta}>Actualizar receta</button>
     </>
   );
 };
 
-export default InputUpadate;
+export default InputUpdate;

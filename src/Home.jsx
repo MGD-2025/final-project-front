@@ -3,6 +3,18 @@ import { Link } from "react-router-dom";
 
 const Home = ({ data }) => {
   const [recetas, setRecetas] = useState(data);
+  const getRecetas = async () => {
+  try {
+    const response = await fetch('http://localhost:3000/');
+    const resData = await response.json();
+    setRecetas(resData);
+  } catch (error) {
+    console.error(error);
+  }
+  useEffect(() => {
+  getRecetas();
+}, []);
+};
 
   const deleteReceta = async (id) => {
     try {

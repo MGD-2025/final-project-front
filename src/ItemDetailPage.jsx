@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import InputUpadate from "./components/InputUpdate";
+import { Link } from "react-router-dom";
 
 const ItemDetailPage = ({ data }) => {
   const { id } = useParams();
@@ -18,18 +18,6 @@ const ItemDetailPage = ({ data }) => {
     ? receta.Receta
     : receta.Receta?.preparacion || [];
 
-  const updateReceta = async (id) => {
-    try {
-      await fetch(`http://localhost:3000/id/${id}`, {
-        method: "PUT"
-      });
-
-      setRecetas(recetas.filter(item => item._id !== id));
-    } catch (error) {
-      console.error("Error al actualizar", error);
-    }
-  };
-
   return (
     <>
       <h2>{receta.Nombre}</h2>
@@ -47,7 +35,7 @@ const ItemDetailPage = ({ data }) => {
           <li key={index}>{preparacion}</li>
         ))}
       </ol>
-      <button onClick={() => updateReceta(receta._id)}> Editar receta </button>
+      <Link to={`/editar/${receta._id}`}><button type='submit'> Editar receta </button></Link>
 
     </>
   );
