@@ -8,10 +8,11 @@ const InputUpdate = ({ actualizarReceta }) => {
   const { id } = useParams();
 
   const [nombre, setNombre] = useState('');
-  const [tipo, setTipo] = useState('[]');
+  const [orden, setOrden] = useState([]);
   const [ingredientes, setIngredientes] = useState('');
   const [preparacion, setPreparacion] = useState('');
-  const [alergenos, setAlergenos] = useState ('[]')
+  const [alergenos, setAlergenos] = useState ([])
+  const [mensaje, setMensaje] = useState('');
 
   const urlApi = `http://localhost:3000/editar/${id}`;
     
@@ -21,10 +22,11 @@ const InputUpdate = ({ actualizarReceta }) => {
       const resData = await response.json();
 
       setNombre(resData.Nombre || '');
-      setTipo(resData.Tipo || '');
+      setOrden(resData.Orden || '[]');
       setIngredientes(resData.Ingredientes?.tipo?.join(',') || '');
       setPreparacion(resData.Receta?.preparacion?.join(',') || '');
-      setAlergenos (resData.Alérgenos?.tipo || ''); 
+      setAlergenos (resData.Alergenos?.tipo || '[]'); 
+      
     };
 
     fetchReceta()
@@ -36,13 +38,9 @@ const InputUpdate = ({ actualizarReceta }) => {
 
       const body = {
         Nombre: nombre,
-        Tipo: tipo,
-        Ingredientes: {
-          tipo: ingredientes.split(',') 
-        },
-        Receta: {
-          preparacion: preparacion.split(',')
-        }
+        Orden: orden,
+        Ingredientes: ingredientes.split(';'),
+        Receta: preparacion.split(';')
       };
 
       await fetch(urlApi, {
@@ -52,11 +50,12 @@ const InputUpdate = ({ actualizarReceta }) => {
         },
         body: JSON.stringify(body),
       });
-
+      setMensaje('Receta modificada')
       actualizarReceta();
       
     } catch (error) {
-      console.error(error);
+      console.error(mensaje);
+      setMensaje('Error al modificar la receta')
     }
   };
 
@@ -71,10 +70,10 @@ const InputUpdate = ({ actualizarReceta }) => {
 
       <select 
         multiple 
-        value={tipo} 
+        value={tipos} 
         onChange={(e) => {
           const values = Array.from(e.target.selectedOptions, option => option.value);
-          setTipo(values);
+          setOrden(values);
         }}
       >
         <option value="Entrantes">Entrantes</option>
@@ -85,23 +84,32 @@ const InputUpdate = ({ actualizarReceta }) => {
 
       <input
         type='text'
-        placeholder='Ingredientes (separados por coma)'
+        placeholder='Ingredientes (separados por ;)'
         value={ingredientes}
         onChange={(e) => setIngredientes(e.target.value)}
       />
 
       <input
         type='text'
-        placeholder='Preparación (separada por coma)'
+        placeholder='Preparación (separada por ;)'
         value={preparacion}
         onChange={(e) => setPreparacion(e.target.value)}
       />
 
-      <select value={alergia} onChange={(e) => setAlergenos(e.target.value)}>
-        <option value="">Selecciona Alérgenos</option>
-        {alergia.map(alergia => (
-        <option key={alergia} value={alergia}>{alergia}</option>
-        ))}
+      <select 
+        multiple 
+        value={alergenos} 
+        onChange={(e) => {
+          const values = Array.from(e.target.selectedOptions, option => option.value);
+          setAlergenos(values);
+        }}
+      >
+        <option value="Lácteos">Lácteos</option>
+        <option value="Huevos">Huevos</option>
+        <option value= "Gluten">Gluten</option>
+        <option value="Mariscos">Mariscos</option>
+        <option value="Vegano">Vegano</option>
+
       </select>
 
       <button onClick={updateReceta}>Actualizar receta</button>
