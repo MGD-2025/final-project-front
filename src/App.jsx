@@ -4,6 +4,10 @@ import Home from './Home'
 import ItemDetailPage from "./ItemDetailPage";
 import InputCreate from "./components/InputCreate.jsx";
 import InputUpdate from "./components/InputUpdate.jsx";
+import Entrantes from "./Entrantes.jsx";
+import Ensaladas from "./Ensaladas.jsx";
+import Principales from "./Principales.jsx";
+import Postres from "./Postres.jsx";
 
 const App = () => {
   const [data, setData]= useState(null)
@@ -28,6 +32,10 @@ const App = () => {
     <div>
       <nav>
         <Link to='/'> INICIO</Link>
+        <Link to='/entrantes'> ENTRANTES</Link>
+        <Link to='/principales'> PLATO PRINCIPAL</Link>
+        <Link to='/ensaladas'> ENSALADAS</Link>
+        <Link to='/postres'> POSTRES</Link>
       </nav>
 
       {data===null 
@@ -38,7 +46,10 @@ const App = () => {
         <Route path='/:id' element={<ItemDetailPage data={data} />} />
         <Route path='/create' element={<InputCreate newReceta={fetchData}/>} />
         <Route path='/editar/:id' element={<InputUpdate actualizarReceta={fetchData} />} />
-
+        <Route path='/entrantes' element={<Entrantes data={data} />} />
+        <Route path='/ensaladas' element={<Ensaladas data={data} />} />
+        <Route path='/principales' element={<Principales data={data} />} />
+        <Route path='/postres' element={<Postres data={data} />} />
       </Routes>
       }
     </div>

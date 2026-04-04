@@ -20,8 +20,9 @@ const InputCreate = ({ newReceta }) => {
       const body = {
         Nombre: nombre,
         Orden: orden,
-        Ingredientes: ingredientes.split(';'),
-        Receta: preparacion.split(';'),
+        Ingredientes: ingredientes.split(','),
+        Receta: preparacion.split(','),
+        Alergenos: alergenos
       };
 
       await fetch(urlApi, {

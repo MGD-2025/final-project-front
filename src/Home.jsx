@@ -30,7 +30,7 @@ const Home = ({ data }) => {
 
   return (
     <>
-      <h2>Recetas</h2>
+      <h1>MI RECETARIO</h1>
       <ul>
         {recetas.map(item => (
           <li key={item._id}>

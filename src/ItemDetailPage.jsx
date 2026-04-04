@@ -12,11 +12,21 @@ const ItemDetailPage = ({ data }) => {
 
   const ingredientes = Array.isArray(receta.Ingredientes)
     ? receta.Ingredientes
-    : receta.Ingredientes?.tipo || [];
+    : receta.Ingredientes || [];
 
-    const preparacion = Array.isArray(receta.Receta)
+  const preparacion = Array.isArray(receta.Receta)
     ? receta.Receta
-    : receta.Receta?.preparacion || [];
+    : receta.Receta || [];
+
+  const orden = Array.isArray(receta.Orden)
+    ? receta.Orden
+    : receta.Orden || [];
+  
+  const alergias = Array.isArray(receta.Alergenos)
+    ? receta.Alergenos
+    : receta.Alergenos || [];
+
+
 
   return (
     <>
@@ -35,6 +45,10 @@ const ItemDetailPage = ({ data }) => {
           <li key={index}>{preparacion}</li>
         ))}
       </ol>
+
+      <p>Esta receta es: {receta.Orden.join(',')}</p>
+      <p>Esta receta contiene: {receta.Alergenos.join(',')}</p>
+
       <Link to={`/editar/${receta._id}`}><button type='submit'> Editar receta </button></Link>
 
     </>

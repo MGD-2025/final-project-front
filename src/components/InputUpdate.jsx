@@ -22,10 +22,10 @@ const InputUpdate = ({ actualizarReceta }) => {
       const resData = await response.json();
 
       setNombre(resData.Nombre || '');
-      setOrden(resData.Orden || '[]');
-      setIngredientes(resData.Ingredientes?.tipo?.join(',') || '');
-      setPreparacion(resData.Receta?.preparacion?.join(',') || '');
-      setAlergenos (resData.Alergenos?.tipo || '[]'); 
+      setOrden(resData.Orden || []);
+      setIngredientes(resData.Ingredientes?.join(',') || '');
+      setPreparacion(resData.Receta?.join(',') || '');
+      setAlergenos (resData.Alergenos || []); 
       
     };
 
@@ -39,8 +39,9 @@ const InputUpdate = ({ actualizarReceta }) => {
       const body = {
         Nombre: nombre,
         Orden: orden,
-        Ingredientes: ingredientes.split(';'),
-        Receta: preparacion.split(';')
+        Ingredientes: ingredientes.split(','),
+        Receta: preparacion.split(','),
+        Alergenos: alergenos
       };
 
       await fetch(urlApi, {
@@ -70,7 +71,7 @@ const InputUpdate = ({ actualizarReceta }) => {
 
       <select 
         multiple 
-        value={tipos} 
+        value={orden} 
         onChange={(e) => {
           const values = Array.from(e.target.selectedOptions, option => option.value);
           setOrden(values);
