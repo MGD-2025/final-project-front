@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 const Home = ({ data }) => {
   const [recetas, setRecetas] = useState(data);
+  const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhst:3000/'
+
   const getRecetas = async () => {
   try {
-    const response = await fetch('http://localhost:3000/');
+    const response = await fetch('urlBase');
     const resData = await response.json();
     setRecetas(resData);
   } catch (error) {
@@ -18,7 +20,7 @@ const Home = ({ data }) => {
 
   const deleteReceta = async (id) => {
     try {
-      await fetch(`http://localhost:3000/id/${id}`, {
+      await fetch(`urlBase+id+${id}`, {
         method: "DELETE"
       });
 

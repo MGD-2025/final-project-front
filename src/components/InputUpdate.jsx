@@ -16,11 +16,11 @@ const InputUpdate = ({ actualizarReceta }) => {
   const [alergenos, setAlergenos] = useState ([])
   const [mensaje, setMensaje] = useState('');
 
-  const urlApi = `http://localhost:3000/editar/${id}`;
+  const urlBase = import.meta.env.VITE_APP_API_URL 
     
   useEffect(() => {
     const fetchReceta = async () => {
-      const response = await fetch(`http://localhost:3000/id/${id}`);
+      const response = await fetch(`urlBase+id+${id}`);
       const resData = await response.json();
 
       setNombre(resData.Nombre || '');

@@ -12,7 +12,8 @@ import './App.css'
 
 const App = () => {
   const [data, setData]= useState(null)
-  const urlApi = 'http://localhost:3000/'
+  const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhost:3000/'
+  const urlApi = urlBase|| 'http://localhost:3000/'
 
   const fetchData = async () =>{
     try{
