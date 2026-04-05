@@ -13,11 +13,11 @@ import './App.css'
 const App = () => {
   const [data, setData]= useState(null)
   const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhost:3000/'
-  const urlApi = urlBase|| 'http://localhost:3000/'
+
 
   const fetchData = async () =>{
     try{
-      const response = await fetch(urlApi)
+      const response = await fetch(urlBase)
       const resData = await response.json ()
       setData(resData)
     }catch (error){

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Home = ({ data }) => {
   const [recetas, setRecetas] = useState(data);
-  const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhst:3000/'
+  const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhost:3000/'
 
   const getRecetas = async () => {
   try {

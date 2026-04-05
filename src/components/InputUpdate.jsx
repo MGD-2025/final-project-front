@@ -16,11 +16,11 @@ const InputUpdate = ({ actualizarReceta }) => {
   const [alergenos, setAlergenos] = useState ([])
   const [mensaje, setMensaje] = useState('');
 
-  const urlBase = import.meta.env.VITE_APP_API_URL 
+  const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhost:3000/';
     
   useEffect(() => {
     const fetchReceta = async () => {
-      const response = await fetch(`urlBase+id+${id}`);
+      const response = await fetch(`${urlBase}/id/${id}`);
       const resData = await response.json();
 
       setNombre(resData.Nombre || '');
@@ -87,14 +87,14 @@ const InputUpdate = ({ actualizarReceta }) => {
 
       Ingredientes: <input className={styles.ingredientes}
         type='text'
-        placeholder='Ingredientes (separados por ;)'
+        placeholder='Ingredientes (separados por ,)'
         value={ingredientes}
         onChange={(e) => setIngredientes(e.target.value)}
       />
 
       Elaboraciones: <input className={styles.preparacion}
         type='text'
-        placeholder='Preparación (separada por ;)'
+        placeholder='Preparación (separada por ,)'
         value={preparacion}
         onChange={(e) => setPreparacion(e.target.value)}
       />

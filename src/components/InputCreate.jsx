@@ -13,7 +13,7 @@ const InputCreate = ({ newReceta }) => {
   const [alergenos, setAlergenos]= useState([])
   const [mensaje, setMensaje] = useState('');
 
-  const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhost:3000/create';
+  const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhost:3000/';
   const urlApi = urlBase+'create'
 
   const createReceta = async () => {
@@ -74,14 +74,14 @@ const InputCreate = ({ newReceta }) => {
 
       Ingredientes: <input
         type='text'
-        placeholder='Ingredientes (separados por ;)'
+        placeholder='Ingredientes (separados por ,)'
         value={ingredientes}
         onChange={(e) => setIngredientes(e.target.value)}
       />
 
       Elaboración: <input
         type='text'
-        placeholder='Preparación (separada por ;)'
+        placeholder='Preparación (separada por ,)'
         value={preparacion}
         onChange={(e) => setPreparacion(e.target.value)}
       />
