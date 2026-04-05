@@ -14,7 +14,7 @@ const InputCreate = ({ newReceta }) => {
   const [mensaje, setMensaje] = useState('');
 
   const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhost:3000/';
-  const urlApi = urlBase+'create'
+  const urlApi = `${urlBase}/create`
 
   const createReceta = async () => {
     try {
