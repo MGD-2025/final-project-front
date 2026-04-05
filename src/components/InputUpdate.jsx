@@ -17,7 +17,7 @@ const InputUpdate = ({ actualizarReceta }) => {
   const [mensaje, setMensaje] = useState('');
 
   const urlBase = import.meta.env.VITE_APP_API_URL || 'http://localhost:3000/';
-    
+  const urlApi=  urlBase
   useEffect(() => {
     const fetchReceta = async () => {
       const response = await fetch(`${urlBase}id/${id}`);
@@ -46,7 +46,7 @@ const InputUpdate = ({ actualizarReceta }) => {
         Alergenos: alergenos
       };
 
-      await fetch(urlApi, {
+      await fetch(`${urlApi}editar/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
