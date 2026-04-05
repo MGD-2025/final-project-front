@@ -1,18 +1,18 @@
-# React + Vite
+# MI RECETARIO
+Esta es una app para los amantes de la gastronomía y la cocina, donde podrás guardar y tener para siempre aquellas recetas que te apetezca hacer, y no te acuerdes de ellas. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# FRONT
+En este proyecto encontrarás la configuración de la parte front de la app. 
 
-Currently, two official plugins are available:
+Tenemos en components dos inputs, uno que hemos creado para cuando queremos añadir una receta nueva, y otro que hemos creado para cuando queremos modificar una receta existente. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Tenemos también ItemDetailPage donde tenemos el detalle de cada receta. 
 
-## React Compiler
+Además de un archivo por cada página que encontramos por cada tipo de receta: Entrantes, Principales, Ensaladas y Postres. Para que se pueda filtrar por cada uno de ellos. 
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Podemos ver el archivo App.jsx, que es el que nos une todos los archivos que tenemos, y el que hace posible que nuestra app redirija a las rutas indicadas.
 
-Note: This will impact Vite dev & build performances.
+Y por último, pero no menos importante, tenemos varios archivos css, que son los que nos dan color y nos pintan bonito todo lo que hemos hecho. 
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Esta información es necesaria para que nuestra aplicación funcione. 
+Espero que disfrutes utilizando tu APP MI RECETARIO 
