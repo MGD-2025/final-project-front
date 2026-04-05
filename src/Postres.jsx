@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import styles from './Paginas.module.css'
+
 
 const Postres = ({ data }) => {
 
@@ -11,7 +13,7 @@ const Postres = ({ data }) => {
   );
 
   return (
-    <>
+    <div className={styles.container}>
       <h1>POSTRES</h1>
 
       {postres.length === 0 && <p>No hay recetas</p>}
@@ -28,10 +30,10 @@ const Postres = ({ data }) => {
         ))}
       </ul>
 
-      <nav>
+      <nav className="addReceta">
         <Link to='/create'>Añade una nueva receta</Link>
       </nav>
-    </>
+    </div>
   );
 };
 

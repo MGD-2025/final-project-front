@@ -1,0 +1,78 @@
+
+.titulo{
+	display: flex;
+	justify-content: center;
+	font-size: 30px;
+	font-weight: bold;
+	margin: 20px;
+	padding: 20px;
+	color: rgb(211, 92, 132);
+}
+
+.ingredientes{
+	display: flex;
+	justify-content: left;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 10px;
+	padding: 10px;
+    gap:5px;
+	color:black
+}
+
+.preparacion{
+	display: flex;
+	justify-content: left;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 10px;
+	padding: 10px;
+	color:black
+}
+
+.listaIng{
+    display: wrap;
+	justify-content: left;
+	font-size: 15px;
+	margin: 10px;
+	padding: 10px;
+	color:black
+}
+
+.listaPrep{
+    display: wrap;
+	justify-content: left;
+	font-size: 15px;
+	margin: 10px;
+	padding: 10px;
+	color:black
+}
+
+.tipo{
+	display: flex;
+	justify-content: left;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 10px;
+	padding: 10px;
+    gap:5px;
+	color:black
+}
+
+.tipoWord{
+    color:rgb(211, 92, 132)
+}
+
+.boton{
+	display: flex;
+	background-color:rgb(223, 223, 89);
+	justify-content: center;
+	align-items: center;
+	width: 220px;
+	height: 30px;
+    margin:20px;
+    padding: 20px;
+	border-radius: 20px;
+	font-size: 15px;
+
+}

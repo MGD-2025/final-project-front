@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import styles from './InputUpdate.module.css'
+
 
 const tipos = ['Entrantes', 'Principales', 'Ensaladas', 'Postres'];
 const alergia = ['Lácteos', 'Huevos', 'Gluten', 'Mariscos', 'Vegano']
@@ -61,15 +63,15 @@ const InputUpdate = ({ actualizarReceta }) => {
   };
 
   return (
-    <>
-      <input
+    <div className={styles.container}>
+      Nombre: <input className={styles.nombre}
         type='text'
         placeholder='Nombre'
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
       />
 
-      <select 
+      Orden: <select className={styles.orden}
         multiple 
         value={orden} 
         onChange={(e) => {
@@ -83,21 +85,21 @@ const InputUpdate = ({ actualizarReceta }) => {
         <option value="Postres">Postres</option>
       </select>
 
-      <input
+      Ingredientes: <input className={styles.ingredientes}
         type='text'
         placeholder='Ingredientes (separados por ;)'
         value={ingredientes}
         onChange={(e) => setIngredientes(e.target.value)}
       />
 
-      <input
+      Elaboraciones: <input className={styles.preparacion}
         type='text'
         placeholder='Preparación (separada por ;)'
         value={preparacion}
         onChange={(e) => setPreparacion(e.target.value)}
       />
 
-      <select 
+      Alérgenos: <select className={styles.alergenos}
         multiple 
         value={alergenos} 
         onChange={(e) => {
@@ -113,8 +115,8 @@ const InputUpdate = ({ actualizarReceta }) => {
 
       </select>
 
-      <button onClick={updateReceta}>Actualizar receta</button>
-    </>
+      <button className={styles.boton} onClick={updateReceta}>Actualizar receta</button>
+    </div>
   );
 };
 

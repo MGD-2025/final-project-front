@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from './InputCreate.module.css'
 
 const tipos = ['Entrantes', 'Principales', 'Ensaladas', 'Postres'];
 const alergia = ['Lácteos', 'Huevos', 'Gluten', 'Mariscos', 'Vegano']
@@ -48,15 +49,15 @@ const InputCreate = ({ newReceta }) => {
   };
 
   return (
-    <>
-      <input
+    <div  className={styles.container}>
+      Nombre: <input
         type='text'
         placeholder='Nombre'
         value={nombre}
         onChange={(e) => setNombre(e.target.value)}
       />
 
-      <select 
+      Orden: <select 
         multiple 
         value={orden} 
         onChange={(e) => {
@@ -70,21 +71,21 @@ const InputCreate = ({ newReceta }) => {
         <option value="Postres">Postres</option>
       </select>
 
-      <input
+      Ingredientes: <input
         type='text'
         placeholder='Ingredientes (separados por ;)'
         value={ingredientes}
         onChange={(e) => setIngredientes(e.target.value)}
       />
 
-      <input
+      Elaboración: <input
         type='text'
         placeholder='Preparación (separada por ;)'
         value={preparacion}
         onChange={(e) => setPreparacion(e.target.value)}
       />
 
-      <select 
+      Alérgenos: <select 
         multiple 
         value={alergenos} 
         onChange={(e) => {
@@ -101,8 +102,8 @@ const InputCreate = ({ newReceta }) => {
       </select>
 
 
-      <button onClick={createReceta}>Añadir Receta </button>
-    </>
+      <button  className={styles.boton} onClick={createReceta}>Añadir Receta </button>
+    </div>
   );
 };
 

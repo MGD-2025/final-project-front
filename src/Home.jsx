@@ -31,9 +31,9 @@ const Home = ({ data }) => {
   return (
     <>
       <h1>MI RECETARIO</h1>
-      <ul>
+      <ul className='recetas'>
         {recetas.map(item => (
-          <li key={item._id}>
+          <li className='recetasBox' key={item._id}>
             <Link to={`/${item._id}`}>{item.Nombre}</Link>
             <button onClick={() => deleteReceta(item._id)}> Eliminar receta </button>
           </li>

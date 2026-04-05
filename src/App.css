@@ -82,7 +82,7 @@ h1{
 	color: rgb(211, 92, 132);
 }
 
-ul{
+.recetas {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -93,7 +93,7 @@ ul{
 }
 
 
-li{
+.recetasBox{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;

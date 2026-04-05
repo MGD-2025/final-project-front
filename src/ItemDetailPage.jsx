@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import styles from './ItemDetailPage.module.css'
 
 const ItemDetailPage = ({ data }) => {
   const { id } = useParams();
@@ -30,26 +31,26 @@ const ItemDetailPage = ({ data }) => {
 
   return (
     <>
-      <h2>{receta.Nombre}</h2>
+      <h2 className={styles.titulo} >{receta.Nombre}</h2>
 
-      <h3>Ingredientes:</h3>
-      <ul>
+      <h3 className={styles.ingredientes} >Ingredientes:</h3>
+      <ul className={styles.listaIng}>
         {ingredientes.map((ingredientes, index) => (
           <li key={index}>{ingredientes}</li>
         ))}
       </ul>
 
-      <p>Como se hace: </p>
-      <ol>
+      <p className={styles.preparacion}>Como se hace: </p>
+      <ol className={styles.listaPrep}>
         {preparacion.map((preparacion, index) => (
           <li key={index}>{preparacion}</li>
         ))}
       </ol>
 
-      <p>Esta receta es: {receta.Orden.join(',')}</p>
-      <p>Esta receta contiene: {receta.Alergenos.join(',')}</p>
+      <p className={styles.tipo}>Esta receta está en: <p className={styles.tipoWord}>{receta.Orden.join(',')}</p></p>
+      <p className={styles.tipo}>Esta receta contiene:<p className={styles.tipoWord}>{receta.Alergenos.join(',')}</p></p>
 
-      <Link to={`/editar/${receta._id}`}><button type='submit'> Editar receta </button></Link>
+      <Link to={`/editar/${receta._id}`}><button className={styles.boton}type='submit'> Editar receta </button></Link>
 
     </>
   );
