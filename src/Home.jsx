@@ -39,7 +39,7 @@ const Home = ({ data }) => {
           </li>
         ))}
       </ul>
-      <nav>
+      <nav className="addReceta">
         <Link to='/create'>Añade una nueva receta</Link>
       </nav>
     </>

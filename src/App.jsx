@@ -8,6 +8,7 @@ import Entrantes from "./Entrantes.jsx";
 import Ensaladas from "./Ensaladas.jsx";
 import Principales from "./Principales.jsx";
 import Postres from "./Postres.jsx";
+import './App.css'
 
 const App = () => {
   const [data, setData]= useState(null)
@@ -29,8 +30,8 @@ const App = () => {
   }, [])
   return (
   <Router>
-    <div>
-      <nav>
+    <div className="container">
+      <nav className='barra'>
         <Link to='/'> INICIO</Link>
         <Link to='/entrantes'> ENTRANTES</Link>
         <Link to='/principales'> PLATO PRINCIPAL</Link>
