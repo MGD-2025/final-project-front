@@ -20,7 +20,7 @@ const InputUpdate = ({ actualizarReceta }) => {
     
   useEffect(() => {
     const fetchReceta = async () => {
-      const response = await fetch(`${urlBase}/id/${id}`);
+      const response = await fetch(`${urlBase}id/${id}`);
       const resData = await response.json();
 
       setNombre(resData.Nombre || '');

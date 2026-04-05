@@ -20,7 +20,7 @@ const Home = ({ data }) => {
 
   const deleteReceta = async (id) => {
     try {
-      await fetch(`urlBase+id+${id}`, {
+      await fetch(`${urlBase}id/${id}`, {
         method: "DELETE"
       });
 
